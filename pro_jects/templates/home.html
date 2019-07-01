@@ -1,0 +1,89 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container-fluid " style="">
+      <div class="row text-center" id="header">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="row text-center welcome-type headline">
+            <h2 style=" margin-top: 1em;" class="welcome-text" id="intro">Identify the master of master...</h2>
+          </div>        
+          <div class="row">
+            <ul class="proj-btns" style="margin-left: 30%; margin-top: 1em;">
+              <li><a href="#projects"><button class="btn btn-default">Projects</button></a></li>
+              <li><a href="{% url 'newProject' %}"><button class="btn btn-default">Add Project</button></a></li>
+            </ul>
+          </div>        
+        </div>        
+        <div class="col-md-3"></div>
+      </div>
+    
+        <div class="row text-center p-title" id="projects" style="color:whitesmoke">
+          <h2 class="text-center" style="border: 3px solid whitesmoke; padding: 2%">Top Rated Sites</h2>
+        </div>
+        <div class="row">
+          
+            {%for project in projects%}
+            <div class="col-md-4">
+              <div class="card">
+                <!-- Card image -->             
+                <h3 class="card-title text-center" style="padding:1%;"><a>{{project.name}}</a></h3>
+                <img class="card-img-top img-fluid" src="{{project.image.url}}" alt="Card image cap">
+              
+                <!-- Card content -->
+                <div class="card-body">        
+                  <p class="card-text">{{project.description}}</p>
+                  <a href="{{project.link}}" target="_blank" class="btn btn-default">View Site</a>                  
+                </div>
+                <div class="card-footer">
+                  <p>Site by -<cite>{{project.user.username}}</cite>-</p>
+                  <a><p class="more-click">See more</p></a>
+                  <div class="more">
+                  {% for profile in profiles%}
+                  <p>Contact:<strong> {{profile.contact}}</strong></p>
+                  {% endfor %}
+                  <span class="rating">
+                    <p class="text-center"><b>Ratings <img src="/static/images/Actions-rating-icon.png" width="35"></b></p>
+                    <ul>
+                      <p>Design <button class="btn btn-outline-info rate-score">0</button>
+                        <div class="stars" data-rating="3">
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                        </div>
+                      </p>
+                      <p>Usability <button class="btn btn-outline-info rate-score">0</button>
+                        <div class="stars" data-rating="3">
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                        </div>
+                      </p>
+                      <p>Content <button class="btn btn-outline-info rate-score">0</button>
+                        <div class="stars" data-rating="3">
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                          <span class="star">&nbsp;</span>
+                        </div>
+                      </p>
+                    </ul>
+                  </span>
+                  </div>
+                </div>                                 
+              </div>
+            </div>
+            {%endfor%}  
+         
+        
+      </div>
+    </div>
+ 
+
+{% endblock %} {% endcomment %}
